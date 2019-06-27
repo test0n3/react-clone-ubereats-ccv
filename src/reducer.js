@@ -4,32 +4,32 @@ export const initialState = {
     email: "",
     password: ""
   },
-  restaurants: {
-    1: {
-      id: 1,
-      name: "McDonalds",
-      priceType: "medium",
-      address: "Ovalo Gutierrez",
-      latitud: 1.27,
-      longitud: 2.54
-    },
-    2: {
-      id: 2,
-      name: "Chilis",
-      priceType: "high",
-      address: "Av. Pardo 404",
-      latitud: 0.27,
-      longitud: 5.54
-    },
-    3: {
-      id: 3,
-      name: "McArthur",
-      priceType: "low",
-      address: "Av. Benavides 5320",
-      latitud: 4.27,
-      longitud: 3.54
-    }
-  },
+  // restaurants: [
+  //   {
+  //     id: 1,
+  //     name: "McDonalds",
+  //     priceType: "medium",
+  //     address: "Ovalo Gutierrez",
+  //     latitud: 1.27,
+  //     longitud: 2.54
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "Chilis",
+  //     priceType: "high",
+  //     address: "Av. Pardo 404",
+  //     latitud: 0.27,
+  //     longitud: 5.54
+  //   },
+  //   {
+  //     id: 3,
+  //     name: "McArthur",
+  //     priceType: "low",
+  //     address: "Av. Benavides 5320",
+  //     latitud: 4.27,
+  //     longitud: 3.54
+  //   }
+  // ],
   menuItems: {
     1: {
       id: 1,
@@ -80,11 +80,18 @@ export const initialState = {
       restaurantId: 3
     }
   },
-  cart: {}
+  cart: {},
+  restaurants: []
 };
 
 function reducer(state = initialState, action = {}) {
   switch (action.type) {
+    case "GET_RESTAURANTS": {
+      return {
+        ...state,
+        restaurants: action.payload
+      };
+    }
     case "ADD_MENU_ITEM": {
       if (!state.cart.hasOwnProperty(action.payload.menuItems.id)) {
         return {

@@ -6,11 +6,11 @@ function useCartProducts() {
 }
 
 function useRestaurants() {
-  return useSelector(state => Object.values(state.restaurants), shallowEqual);
+  return useSelector(state => state.restaurants, shallowEqual);
 }
 
 function useSelectedRestaurant(id) {
-  return useSelector(state => state.restaurants[id], shallowEqual);
+  return useSelector(state => state.restaurants[id - 1], shallowEqual);
 }
 
 function useMenutItems() {
