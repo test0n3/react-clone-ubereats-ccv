@@ -12,7 +12,7 @@ function App() {
         <Router>
           <Login path="login" />
           <RestaurantsList path="/" />
-          <Restaurant path="/restaurant/:id" />
+          <Restaurant path="/restaurants/:id" />
           <Cart path="/cart" />
         </Router>
       </main>

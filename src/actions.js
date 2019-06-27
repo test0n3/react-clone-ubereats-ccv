@@ -2,6 +2,16 @@ function reset() {
   return { type: "RESET" };
 }
 
+function getRestaurants() {
+  return async dispatch => {
+    const response = await fetch("http://localhost:4000/api/restaurants", {
+      credentials: "include"
+    });
+    const payload = await response.json();
+    return dispatch({ type: "GET_RESTAURANTS", payload });
+  };
+}
+
 function addMenuItem(item) {
   return {
     type: "ADD_MENU_ITEM",
@@ -29,4 +39,4 @@ function substractQuantity(item) {
   };
 }
 
-export { reset, addMenuItem, addQuantity, substractQuantity };
+export { reset, getRestaurants, addMenuItem, addQuantity, substractQuantity };
