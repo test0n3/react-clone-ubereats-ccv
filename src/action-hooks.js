@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import {
   reset,
   getRestaurants,
+  getSelectedRestaurant,
   addMenuItem,
   addQuantity,
   substractQuantity
@@ -17,6 +18,13 @@ export function useReset() {
 export function useGetRestaurants() {
   const dispatch = useDispatch();
   return React.useCallback(() => dispatch(getRestaurants()), [dispatch]);
+}
+
+export function useGetSelectedRestaurant() {
+  const dispatch = useDispatch();
+  return React.useCallback(id => dispatch(getSelectedRestaurant(id)), [
+    dispatch
+  ]);
 }
 
 export function useMenuItem() {

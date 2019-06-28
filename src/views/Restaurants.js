@@ -2,24 +2,29 @@
 import React from "react";
 import { jsx } from "@emotion/core";
 import { useSelectedRestaurant } from "../selectors";
+import { useGetSelectedRestaurant } from "../action-hooks";
 
 function Restaurant({ id }) {
-  const restaurant = useSelectedRestaurant(parseInt(id));
-  console.log(restaurant);
+  const getSelectedRestaurant = useGetSelectedRestaurant();
+  const restaurant = useSelectedRestaurant();
+
+  React.useEffect(() => {
+    getSelectedRestaurant(parseInt(id));
+  }, []);
 
   return (
     <>
       <h1>{restaurant.id}</h1>
       <h2>{restaurant.name}</h2>
-      {/* {restaurant.menu_items.map(item => {
+      {restaurant.menu_items.map(item => {
         return (
           <section>
             <h2>{item.name}</h2>
             <p>{item.description}</p>
-            <span>{item.price}</span> | <span>{item.estimated_time}</span>
+            <span>Price: {item.price}</span>
           </section>
         );
-      })} */}
+      })}
     </>
   );
 

@@ -81,7 +81,8 @@ export const initialState = {
     }
   },
   cart: {},
-  restaurants: []
+  restaurants: [],
+  restaurant: {}
 };
 
 function reducer(state = initialState, action = {}) {
@@ -90,6 +91,12 @@ function reducer(state = initialState, action = {}) {
       return {
         ...state,
         restaurants: action.payload
+      };
+    }
+    case "GET_SELECTED_RESTAURANT": {
+      return {
+        ...state,
+        restaurant: action.payload
       };
     }
     case "ADD_MENU_ITEM": {

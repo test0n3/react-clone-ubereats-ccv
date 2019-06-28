@@ -15,7 +15,7 @@ function RestaurantList() {
 
   return (
     <>
-      <h2>Restaurants List</h2>
+      <h2>Restaurants</h2>
       {restaurants.map(restaurant => {
         return (
           <article>

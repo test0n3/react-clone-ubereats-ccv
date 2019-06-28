@@ -1,4 +1,3 @@
-import React from "react";
 import { useSelector, shallowEqual } from "react-redux";
 
 function useCartProducts() {
@@ -9,8 +8,8 @@ function useRestaurants() {
   return useSelector(state => state.restaurants, shallowEqual);
 }
 
-function useSelectedRestaurant(id) {
-  return useSelector(state => state.restaurants[id - 1], shallowEqual);
+function useSelectedRestaurant() {
+  return useSelector(state => state.restaurant, shallowEqual);
 }
 
 function useMenutItems() {
