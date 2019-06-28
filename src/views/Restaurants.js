@@ -10,7 +10,7 @@ function Restaurant({ id }) {
 
   React.useEffect(() => {
     getSelectedRestaurant(parseInt(id));
-  }, []);
+  }, [id, getSelectedRestaurant]);
 
   return (
     <>
