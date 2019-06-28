@@ -6,25 +6,31 @@ import { useGetSelectedRestaurant } from "../action-hooks";
 
 function Restaurant({ id }) {
   const getSelectedRestaurant = useGetSelectedRestaurant();
-  const restaurant = useSelectedRestaurant();
+  const restaurant = useSelectedRestaurant(id);
 
   React.useEffect(() => {
     getSelectedRestaurant(parseInt(id));
   }, [id, getSelectedRestaurant]);
 
+  if (!restaurant) return <h1>Loading</h1>;
   return (
     <>
       <h1>{restaurant.id}</h1>
       <h2>{restaurant.name}</h2>
-      {restaurant.menu_items.map(item => {
-        return (
-          <section>
-            <h2>{item.name}</h2>
-            <p>{item.description}</p>
-            <span>Price: {item.price}</span>
-          </section>
-        );
-      })}
+      <section>
+        {restaurant.menu_items
+          ? restaurant.menu_items.map(item => {
+              return (
+                <article>
+                  <h2>{item.name}</h2>
+                  <p>{item.description}</p>
+                  <span>Price: {item.price}</span>
+                </article>
+              );
+            })
+          : null}
+        {/* : null} instead of null fake data */}
+      </section>
     </>
   );
 

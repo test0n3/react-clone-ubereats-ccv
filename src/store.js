@@ -17,7 +17,8 @@ const preloadedState = JSON.parse(
 const store = createStore(
   reducer,
   preloadedState,
-  composer(applyMiddleware(thunk, offlineSync, logger))
+  // composer(applyMiddleware(thunk, offlineSync, logger))
+  composer(applyMiddleware(thunk, logger))
 );
 
 export default store;

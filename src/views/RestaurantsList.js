@@ -2,16 +2,19 @@
 import React from "react";
 import { jsx } from "@emotion/core";
 import { useGetRestaurants } from "../action-hooks";
-import { useRestaurants } from "../selectors";
-import { Link } from "@reach/router";
+import { useRestaurants, useUser } from "../selectors";
+import { Link, Redirect } from "@reach/router";
 
 function RestaurantList() {
   const restaurants = useRestaurants();
   const getRestaurants = useGetRestaurants();
-
+  const user = useUser();
+  console.log(user);
   React.useEffect(() => {
     getRestaurants();
   }, []);
+
+  if (!user) return <Redirect to="/login" noThrow />;
 
   return (
     <>

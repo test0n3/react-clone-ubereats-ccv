@@ -7,7 +7,9 @@ import {
   getSelectedRestaurant,
   addMenuItem,
   addQuantity,
-  substractQuantity
+  substractQuantity,
+  login,
+  logout
 } from "./actions";
 
 export function useReset() {
@@ -42,4 +44,14 @@ export function useSubstractQuantity() {
   return React.useCallback(item => dispatch(substractQuantity(item)), [
     dispatch
   ]);
+}
+
+export function useLogin() {
+  const dispatch = useDispatch();
+  return React.useCallback(user => dispatch(login(user)), [dispatch]);
+}
+
+export function useLogout() {
+  const dispatch = useDispatch();
+  return React.useCallback(() => dispatch(logout()), [dispatch]);
 }
