@@ -20,13 +20,9 @@ function RestaurantList() {
   return (
     <>
       <Header />
-      <h2>Restaurants List</h2>
+      <h2>Restaurants</h2>
       <section
-        css={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center"
-        }}
+        css={{ display: "flex", flexDirection: "column", alignItems: "center" }}
       >
         {restaurants.map((restaurant, index) => {
           return (
@@ -47,6 +43,7 @@ function RestaurantList() {
                     "url('https://via.placeholder.com/400x150.png?text=Restaurant+picture') no-repeat center"
                 }}
               />
+
               <Link
                 to={`/restaurants/${restaurant.id}`}
                 css={{ textDecoration: "none" }}

@@ -55,25 +55,25 @@ function Login() {
           }}
         >
           <section>
-            <label for="loginEmail">
+            <label htmlFor="loginEmail">
               <span css={labelText}>email</span>
               <input
                 type="email"
                 id="loginEmail"
                 name="loginEmail"
                 placeholder="email"
-                autocomplete="off"
+                autoComplete="off"
                 css={loginInput}
               />
             </label>
-            <label for="loginPassword">
+            <label htmlFor="loginPassword">
               <span css={labelText}>password</span>
               <input
                 type="password"
                 id="passwordEmail"
                 name="passwordEmail"
                 placeholder="password"
-                autocomplete="off"
+                autoComplete="off"
                 css={loginInput}
               />
             </label>
