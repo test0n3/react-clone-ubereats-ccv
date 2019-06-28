@@ -15,7 +15,7 @@ function RestaurantList() {
 
   React.useEffect(() => {
     getRestaurants();
-  }, []);
+  }, [getRestaurants]);
 
   return (
     <>

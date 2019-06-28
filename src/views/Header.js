@@ -69,11 +69,13 @@ function Header({ fullHeader = true }) {
               </MenuList>
             </Menu>
             {/* <button css={buttonMenu}>☰</button> */}
-            <h1 css={{ color: "#FFFFFF" }}>Uber Eats Clone</h1>
+            <h1 css={{ color: "#FFFFFF", fontSize: "1.5em" }}>
+              Uber Eats Clone
+            </h1>
           </>
         ) : (
           <button onClick="" css={buttonMenu}>
-            &gt; Back
+            &lt; Back
           </button>
         )}
       </header>
