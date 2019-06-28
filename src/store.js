@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import reducer, { initialState } from "./reducer";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
-import offlineSync from "./middlewares/offline-sync";
+import offlineSync from "./middleware/offline-sync";
 
 const composer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
