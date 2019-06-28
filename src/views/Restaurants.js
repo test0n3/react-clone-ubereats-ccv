@@ -2,35 +2,37 @@
 import React from "react";
 import { jsx } from "@emotion/core";
 import { useSelectedRestaurant } from "../selectors";
-import { useGetSelectedRestaurant } from "../action-hooks";
+import { useGetSelectedRestaurant, useAddMenuItem } from "../action-hooks";
 
 function Restaurant({ id }) {
   const getSelectedRestaurant = useGetSelectedRestaurant();
-  const restaurant = useSelectedRestaurant(id);
+  const restaurant = useSelectedRestaurant();
+  const addItemToCart = useAddMenuItem();
 
   React.useEffect(() => {
     getSelectedRestaurant(parseInt(id));
   }, [id, getSelectedRestaurant]);
 
-  if (!restaurant) return <h1>Loading</h1>;
+  // if (!restaurant) return <h1>Loading</h1>;
+  function handleClick(item) {
+    addItemToCart(item);
+  }
+
   return (
     <>
       <h1>{restaurant.id}</h1>
       <h2>{restaurant.name}</h2>
-      <section>
-        {restaurant.menu_items
-          ? restaurant.menu_items.map(item => {
-              return (
-                <article>
-                  <h2>{item.name}</h2>
-                  <p>{item.description}</p>
-                  <span>Price: {item.price}</span>
-                </article>
-              );
-            })
-          : null}
-        {/* : null} instead of null fake data */}
-      </section>
+      {restaurant.menu_items &&
+        restaurant.menu_items.map(item => {
+          return (
+            <section key={item.id}>
+              <h2>{item.name}</h2>
+              <p>{item.description}</p>
+              <span>Price: {item.price}</span>
+              <button onClick={() => handleClick(item)}>Add to cart!</button>
+            </section>
+          );
+        })}
     </>
   );
 

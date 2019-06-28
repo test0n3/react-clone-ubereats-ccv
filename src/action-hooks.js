@@ -29,7 +29,7 @@ export function useGetSelectedRestaurant() {
   ]);
 }
 
-export function useMenuItem() {
+export function useAddMenuItem() {
   const dispatch = useDispatch();
   return React.useCallback(item => dispatch(addMenuItem(item)), [dispatch]);
 }

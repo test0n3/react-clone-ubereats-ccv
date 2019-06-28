@@ -12,8 +12,8 @@ function useRestaurants() {
   return useSelector(state => Object.values(state.restaurants), shallowEqual);
 }
 
-function useSelectedRestaurant(id) {
-  return useSelector(state => state.restaurants[id] || null, shallowEqual);
+function useSelectedRestaurant() {
+  return useSelector(state => state.restaurant, shallowEqual);
 }
 
 function useMenutItems() {
