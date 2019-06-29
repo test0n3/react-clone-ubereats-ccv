@@ -1,32 +1,15 @@
 /** @jsx jsx */
 import React from "react";
 import { jsx } from "@emotion/core";
-import { navigate } from "@reach/router";
-import Header from "./Header";
 import { useSelectedRestaurant } from "../selectors";
 import { useGetSelectedRestaurant, useAddMenuItem } from "../action-hooks";
+import Header from "./Header";
+import { navigate } from "@reach/router";
 
 function Restaurant({ id }) {
   const getSelectedRestaurant = useGetSelectedRestaurant();
   const restaurant = useSelectedRestaurant();
   const addItemToCart = useAddMenuItem();
-
-  const linkName = {
-    margin: 5,
-    padding: 0,
-    color: "#333333",
-    fontWeight: "normal"
-  };
-  const linkDescription = { margin: 5, padding: 0, color: "#333333" };
-  const linkPrice = {
-    margin: 5,
-    padding: 0,
-    color: "#333333",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "end",
-    alignItems: "end"
-  };
 
   React.useEffect(() => {
     getSelectedRestaurant(parseInt(id));
