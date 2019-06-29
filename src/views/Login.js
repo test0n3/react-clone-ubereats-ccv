@@ -54,7 +54,6 @@ function Login() {
       <Header />
       <section
         css={{
-          backgrounColor: "blue",
           padding: 20,
           height: "100%",
           display: "flex",
@@ -120,8 +119,6 @@ function Login() {
               fontSize: 28,
               padding: "10px 20px",
               "&:hover": { backgroundColor: "#00b248" }
-              // position: "fixed",
-              // bottom: 0
             }}
           >
             Login

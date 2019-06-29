@@ -1,5 +1,6 @@
 import React from "react";
 import { Router } from "@reach/router";
+import { Global } from "@emotion/core";
 import Login from "./views/Login";
 import RestaurantsList from "./views/RestaurantsList";
 import Restaurant from "./views/Restaurants";
@@ -11,6 +12,9 @@ function App() {
   const user = useUser();
   return (
     <>
+      <Global
+        styles={{ body: { margin: 0, padding: 0, fontFamily: "sans-serif" } }}
+      />
       <main>
         <Router>
           {!user && <Redirect from="*" to="/login" noThrow />}
