@@ -72,7 +72,7 @@ function reducer(state = initialState, action = {}) {
         }
       };
     }
-    case "SUBSTRACT_QUANTITY": {
+    case "SUBTRACT_QUANTITY": {
       const findMenuItem = state.cart[action.payload.item.id];
       return {
         ...state,

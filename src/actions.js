@@ -91,9 +91,9 @@ function addQuantity(item) {
   };
 }
 
-function substractQuantity(item) {
+function subtractQuantity(item) {
   return {
-    type: "SUBSTRACT_QUANTITY",
+    type: "SUBTRACT_QUANTITY",
     payload: {
       item
     }
@@ -121,7 +121,7 @@ export {
   resetCart,
   addMenuItem,
   addQuantity,
-  substractQuantity,
+  subtractQuantity,
   deleteFromCart,
   change,
   login,

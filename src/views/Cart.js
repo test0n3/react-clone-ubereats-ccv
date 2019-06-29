@@ -5,7 +5,7 @@ import { useCartProducts, useGetTotal } from "../selectors";
 import {
   useResetCart,
   useAddQuantity,
-  useSubstractQuantity,
+  useSubtractQuantity,
   useDeleteFromCart
 } from "../action-hooks";
 import { navigate } from "@reach/router";
@@ -14,7 +14,7 @@ function Cart() {
   const [bought, setBought] = React.useState(false);
   const cartProducts = useCartProducts();
   const resetCart = useResetCart();
-  const substractQuantity = useSubstractQuantity();
+  const subtractQuantity = useSubtractQuantity();
   const addQuantity = useAddQuantity();
   const deleteFromCart = useDeleteFromCart();
   const total = useGetTotal();
@@ -67,7 +67,7 @@ function Cart() {
                         <button
                           onClick={() => {
                             if (cartProduct.quantity > 1) {
-                              substractQuantity(cartProduct);
+                              subtractQuantity(cartProduct);
                             }
                           }}
                         >
