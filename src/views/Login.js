@@ -1,9 +1,35 @@
 /** @jsx jsx */
 import React from "react";
 import { jsx } from "@emotion/core";
+import { useLogin } from "../action-hooks";
+import { navigate } from "@reach/router";
 import Header from "./Header";
+import { useUser } from "../selectors";
 
 function Login() {
+  const user = useUser();
+  const login = useLogin();
+  const [email, setEmail] = React.useState("josh@delivery.pe");
+  const [password, setPassword] = React.useState("123456");
+  const [error, setError] = React.useState(false);
+
+  function handleEmail(event) {
+    setEmail(event.target.value);
+  }
+
+  function handlePassword(event) {
+    setPassword(event.target.value);
+  }
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    login({ email, password });
+  }
+
+  React.useEffect(() => {
+    if (user) navigate("/");
+  }, [user]);
+
   const loginInput = {
     border: "1px solid #CCCCCC",
     borderRadius: 8,
@@ -28,7 +54,6 @@ function Login() {
       <Header />
       <section
         css={{
-          backgrounColor: "blue",
           padding: 20,
           height: "100%",
           display: "flex",
@@ -37,6 +62,7 @@ function Login() {
         }}
       >
         <form
+          onSubmit={handleSubmit}
           css={{
             display: "flex",
             flexDirection: "column",
@@ -55,26 +81,30 @@ function Login() {
           }}
         >
           <section>
-            <label htmlFor="loginEmail">
-              <span css={labelText}>email</span>
+            <label htmlFor="email">
+              <span css={labelText}>Enter email</span>
               <input
                 type="email"
-                id="loginEmail"
-                name="loginEmail"
+                id="email"
+                name="email"
                 placeholder="email"
                 autoComplete="off"
                 css={loginInput}
+                onChange={handleEmail}
+                value={email}
               />
             </label>
-            <label htmlFor="loginPassword">
-              <span css={labelText}>password</span>
+            <label htmlFor="password">
+              <span css={labelText}>Enter password</span>
               <input
                 type="password"
-                id="passwordEmail"
-                name="passwordEmail"
+                id="password"
+                name="password"
                 placeholder="password"
                 autoComplete="off"
                 css={loginInput}
+                onChange={handlePassword}
+                value={password}
               />
             </label>
           </section>
@@ -89,12 +119,13 @@ function Login() {
               fontSize: 28,
               padding: "10px 20px",
               "&:hover": { backgroundColor: "#00b248" }
-              // position: "fixed",
-              // bottom: 0
             }}
           >
             Login
           </button>
+          {error && (
+            <div css={{ color: "red", marginTop: "1rem" }}>Error: {error}</div>
+          )}
         </form>
       </section>
     </article>
