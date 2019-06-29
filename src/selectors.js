@@ -20,10 +20,19 @@ function useMenutItems() {
   return useSelector(state => Object.values(state.menuItems), shallowEqual);
 }
 
+function useGetTotal() {
+  return useSelector(state =>
+    Object.values(state.cart).reduce((acc, item) => {
+      return acc + item.quantity * item.price;
+    }, 0)
+  );
+}
+
 export {
   useUser,
   useCartProducts,
   useRestaurants,
   useSelectedRestaurant,
-  useMenutItems
+  useMenutItems,
+  useGetTotal
 };

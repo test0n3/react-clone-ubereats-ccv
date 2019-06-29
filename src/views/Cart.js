@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from "react";
 import { jsx } from "@emotion/core";
-import { useCartProducts } from "../selectors";
+import { useCartProducts, useGetTotal } from "../selectors";
 import {
   useResetCart,
   useAddQuantity,
@@ -17,7 +17,7 @@ function Cart() {
   const substractQuantity = useSubstractQuantity();
   const addQuantity = useAddQuantity();
   const deleteFromCart = useDeleteFromCart();
-  // console.log(cartProducts);
+  const total = useGetTotal();
 
   function handleClick() {
     setBought(true);
@@ -86,7 +86,7 @@ function Cart() {
               </tbody>
               <tfooter>
                 <tr>
-                  <td colSpan="2">$ 5.59</td>
+                  <td colSpan="2">$ {total}</td>
                   <td colSpan="2">Total</td>
                 </tr>
               </tfooter>

@@ -50,6 +50,13 @@ function reducer(state = initialState, action = {}) {
             }
           }
         };
+      } else {
+        return {
+          ...state,
+          cart: {
+            ...state.cart
+          }
+        };
       }
     }
     case "ADD_QUANTITY": {
