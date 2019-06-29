@@ -11,6 +11,23 @@ function Restaurant({ id }) {
   const restaurant = useSelectedRestaurant();
   const addItemToCart = useAddMenuItem();
 
+  const linkName = {
+    margin: 5,
+    padding: 0,
+    color: "#333333",
+    fontWeight: "normal"
+  };
+  const linkDescription = { margin: 5, padding: 0, color: "#333333" };
+  const linkPrice = {
+    margin: 5,
+    padding: 0,
+    color: "#333333",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "end",
+    alignItems: "end"
+  };
+
   React.useEffect(() => {
     getSelectedRestaurant(parseInt(id));
   }, [id, getSelectedRestaurant]);
