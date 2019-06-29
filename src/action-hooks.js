@@ -8,7 +8,7 @@ import {
   getSelectedRestaurant,
   addMenuItem,
   addQuantity,
-  substractQuantity,
+  subtractQuantity,
   deleteFromCart,
   login,
   logout
@@ -46,9 +46,9 @@ export function useAddQuantity() {
   return React.useCallback(item => dispatch(addQuantity(item)), [dispatch]);
 }
 
-export function useSubstractQuantity() {
+export function useSubtractQuantity() {
   const dispatch = useDispatch();
-  return React.useCallback(item => dispatch(substractQuantity(item)), [
+  return React.useCallback(item => dispatch(subtractQuantity(item)), [
     dispatch
   ]);
 }
