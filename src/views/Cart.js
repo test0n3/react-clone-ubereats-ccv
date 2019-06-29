@@ -1,12 +1,31 @@
 /** @jsx jsx */
 import React from "react";
 import { jsx } from "@emotion/core";
+import { useCartProducts } from "../selectors";
+import {
+  useResetCart,
+  useAddQuantity,
+  useSubstractQuantity,
+  useDeleteFromCart
+} from "../action-hooks";
+import { navigate } from "@reach/router";
 
-function Cart({ dishes }) {
-  const accepted = false;
+function Cart() {
+  const [bought, setBought] = React.useState(false);
+  const cartProducts = useCartProducts();
+  const resetCart = useResetCart();
+  const substractQuantity = useSubstractQuantity();
+  const addQuantity = useAddQuantity();
+  const deleteFromCart = useDeleteFromCart();
+  // console.log(cartProducts);
+
+  function handleClick() {
+    setBought(true);
+  }
+
   return (
     <>
-      {accepted === true ? (
+      {bought === false ? (
         <>
           <h2>Pickup cart</h2>
           <section>
@@ -20,10 +39,7 @@ function Cart({ dishes }) {
                 </section>
                 <section>
                   <h3>Restaurant name</h3>
-                  <p>
-                    Restaurant Address, <br />
-                    Restaurant phone
-                  </p>
+                  <p>Restaurant Address</p>
                 </section>
               </article>
             </article>
@@ -39,41 +55,53 @@ function Cart({ dishes }) {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Product1</td>
-                  <td>
-                    <button>+</button>
-                    <span>1</span>
-                    <button>-</button>
-                  </td>
-                  <td>$ 3.00</td>
-                  <td>
-                    <button>X</button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Product2</td>
-                  <td>
-                    <button>+</button>
-                    <span>1</span>
-                    <button>-</button>
-                  </td>
-                  <td>$ 2.59</td>
-                  <td>
-                    <button>X</button>
-                  </td>
-                </tr>
+                {cartProducts.map(cartProduct => {
+                  return (
+                    <tr>
+                      <td>{cartProduct.name}</td>
+                      <td>
+                        <button onClick={() => addQuantity(cartProduct)}>
+                          +
+                        </button>
+                        <span>{cartProduct.quantity}</span>
+                        <button
+                          onClick={() => {
+                            if (cartProduct.quantity > 1) {
+                              substractQuantity(cartProduct);
+                            }
+                          }}
+                        >
+                          -
+                        </button>
+                      </td>
+                      <td>{cartProduct.price}</td>
+                      <td>
+                        <button onClick={() => deleteFromCart(cartProduct)}>
+                          X
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
               </tbody>
               <tfooter>
                 <tr>
-                  <td colspan="2">Total</td>
-                  <td colspan="2">$ 5.59</td>
+                  <td colSpan="2">$ 5.59</td>
+                  <td colSpan="2">Total</td>
                 </tr>
               </tfooter>
             </table>
-            <button>Submit</button>
-            <button>Cancel</button>
+            <button onClick={() => handleClick}>Submit</button>
+            <button
+              onClick={() => {
+                resetCart();
+                navigate("/");
+              }}
+            >
+              Cancel
+            </button>
           </section>
+          <button onClick={() => navigate("/")}>back</button>
         </>
       ) : (
         <>

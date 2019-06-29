@@ -5,6 +5,10 @@ function reset() {
   return { type: "RESET" };
 }
 
+function resetCart() {
+  return { type: "RESET_CART" };
+}
+
 function login(user) {
   return async dispatch => {
     const response = await fetch(API_LOGIN_URL, {
@@ -96,6 +100,15 @@ function substractQuantity(item) {
   };
 }
 
+function deleteFromCart(item) {
+  return {
+    type: "DELETE_FROM_CART",
+    payload: {
+      item
+    }
+  };
+}
+
 function change(text) {
   return {
     type: "CHANGE",
@@ -105,9 +118,11 @@ function change(text) {
 
 export {
   reset,
+  resetCart,
   addMenuItem,
   addQuantity,
   substractQuantity,
+  deleteFromCart,
   change,
   login,
   logout,

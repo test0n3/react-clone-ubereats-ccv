@@ -52,36 +52,47 @@ function reducer(state = initialState, action = {}) {
         };
       }
     }
-
     case "ADD_QUANTITY": {
-      if (state.cart.hasOwnProperty(action.payload.item.id)) {
-        const findMenuItem = state.cart[action.payload.item.id];
-        return {
-          ...state,
-          cart: {
-            ...state.cart,
-            [action.payload.item.id]: {
-              ...findMenuItem,
-              quantity: findMenuItem.quantity + 1
-            }
+      const findMenuItem = state.cart[action.payload.item.id];
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          [action.payload.item.id]: {
+            ...findMenuItem,
+            quantity: findMenuItem.quantity + 1
           }
-        };
-      }
+        }
+      };
     }
     case "SUBSTRACT_QUANTITY": {
-      if (state.cart.hasOwnProperty(action.payload.item.id)) {
-        const findMenuItem = state.cart[action.payload.item.id];
-        return {
-          ...state,
-          cart: {
-            ...state.cart,
-            [action.payload.item.id]: {
-              ...findMenuItem,
-              quantity: findMenuItem.quantity - 1
-            }
+      const findMenuItem = state.cart[action.payload.item.id];
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          [action.payload.item.id]: {
+            ...findMenuItem,
+            quantity: findMenuItem.quantity - 1
           }
-        };
-      }
+        }
+      };
+    }
+    case "DELETE_FROM_CART": {
+      const cartUpdated = Object.values(state.cart)
+        .filter(item => item.id !== action.payload.item.id)
+        .reduce((acc, item) => ({ ...acc, [item.id]: item }), {});
+      return {
+        ...state,
+        cart: cartUpdated
+      };
+    }
+    case "RESET_CART": {
+      state.cart = {};
+      return {
+        ...state,
+        cart: {}
+      };
     }
     case "RESET": {
       return initialState;

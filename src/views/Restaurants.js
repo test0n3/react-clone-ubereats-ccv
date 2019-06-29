@@ -4,11 +4,20 @@ import { jsx } from "@emotion/core";
 import { useSelectedRestaurant } from "../selectors";
 import { useGetSelectedRestaurant, useAddMenuItem } from "../action-hooks";
 import Header from "./Header";
+import { navigate } from "@reach/router";
 
 function Restaurant({ id }) {
   const getSelectedRestaurant = useGetSelectedRestaurant();
   const restaurant = useSelectedRestaurant();
   const addItemToCart = useAddMenuItem();
+
+  React.useEffect(() => {
+    getSelectedRestaurant(parseInt(id));
+  }, [id, getSelectedRestaurant]);
+
+  function handleClick(item) {
+    addItemToCart(item);
+  }
 
   const linkName = {
     margin: 5,
@@ -26,15 +35,6 @@ function Restaurant({ id }) {
     justifyContent: "end",
     alignItems: "end"
   };
-
-  React.useEffect(() => {
-    getSelectedRestaurant(parseInt(id));
-  }, [id, getSelectedRestaurant]);
-
-  // if (!restaurant) return <h1>Loading</h1>;
-  function handleClick(item) {
-    addItemToCart(item);
-  }
 
   return (
     <>
@@ -59,7 +59,9 @@ function Restaurant({ id }) {
           }}
         >
           <h2 css={{ fontSize: "1.2em" }}>{restaurant.name}</h2>
-          <p css={{ fontSize: "0.8em" }}>{restaurant.address["name"]}</p>
+          <p css={{ fontSize: "0.8em" }}>
+            {restaurant.address && restaurant.address.name}
+          </p>
         </article>
       </section>
       <section>
@@ -152,6 +154,7 @@ function Restaurant({ id }) {
         }}
       >
         <button
+          onClick={() => navigate("/cart")}
           css={{
             backgroundColor: "#00e676",
             color: "#FFFFFF",

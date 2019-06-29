@@ -3,11 +3,13 @@ import { useDispatch } from "react-redux";
 
 import {
   reset,
+  resetCart,
   getRestaurants,
   getSelectedRestaurant,
   addMenuItem,
   addQuantity,
   substractQuantity,
+  deleteFromCart,
   login,
   logout
 } from "./actions";
@@ -15,6 +17,11 @@ import {
 export function useReset() {
   const dispatch = useDispatch();
   return React.useCallback(() => dispatch(reset()), [dispatch]);
+}
+
+export function useResetCart() {
+  const dispatch = useDispatch();
+  return React.useCallback(() => dispatch(resetCart()), [dispatch]);
 }
 
 export function useGetRestaurants() {
@@ -44,6 +51,11 @@ export function useSubstractQuantity() {
   return React.useCallback(item => dispatch(substractQuantity(item)), [
     dispatch
   ]);
+}
+
+export function useDeleteFromCart() {
+  const dispatch = useDispatch();
+  return React.useCallback(item => dispatch(deleteFromCart(item)), [dispatch]);
 }
 
 export function useLogin() {
