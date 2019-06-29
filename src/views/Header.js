@@ -46,7 +46,7 @@ function Header({ fullHeader = true }) {
               <MenuList
                 css={{
                   width: 300,
-                  height: "calc(100vh - 57)",
+                  height: "calc(100vh - 57px)",
                   backgroundColor: "#FFFFFF",
                   border: "1px solid #000000",
                   color: "#000000",
@@ -68,26 +68,17 @@ function Header({ fullHeader = true }) {
                 </MenuItem>
               </MenuList>
             </Menu>
-            {/* <button css={buttonMenu}>☰</button> */}
-            <h1 css={{ color: "#FFFFFF" }}>Uber Eats Clone</h1>
+
+            <h1 css={{ color: "#FFFFFF", fontSize: "1.5em" }}>
+              Uber Eats Clone
+            </h1>
           </>
         ) : (
-          <button onClick="" css={buttonMenu}>
-            &gt; Back
-          </button>
+          <Link to="/" css={{ ...buttonMenu, textDecoration: "none" }}>
+            &lt; Back
+          </Link>
         )}
       </header>
-      <ul css={{ display: "none", margin: 0, padding: 0, listStyle: "none" }}>
-        <li>
-          <Link to="/">User</Link>
-        </li>
-        <li>
-          <Link to="/cart">Order</Link>
-        </li>
-        <li>
-          <Link to="/login">Logout</Link>
-        </li>
-      </ul>
     </>
   );
 }

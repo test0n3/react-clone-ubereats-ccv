@@ -3,16 +3,25 @@ import { useDispatch } from "react-redux";
 
 import {
   reset,
+  resetCart,
   getRestaurants,
   getSelectedRestaurant,
   addMenuItem,
   addQuantity,
-  substractQuantity
+  substractQuantity,
+  deleteFromCart,
+  login,
+  logout
 } from "./actions";
 
 export function useReset() {
   const dispatch = useDispatch();
   return React.useCallback(() => dispatch(reset()), [dispatch]);
+}
+
+export function useResetCart() {
+  const dispatch = useDispatch();
+  return React.useCallback(() => dispatch(resetCart()), [dispatch]);
 }
 
 export function useGetRestaurants() {
@@ -27,7 +36,7 @@ export function useGetSelectedRestaurant() {
   ]);
 }
 
-export function useMenuItem() {
+export function useAddMenuItem() {
   const dispatch = useDispatch();
   return React.useCallback(item => dispatch(addMenuItem(item)), [dispatch]);
 }
@@ -42,4 +51,19 @@ export function useSubstractQuantity() {
   return React.useCallback(item => dispatch(substractQuantity(item)), [
     dispatch
   ]);
+}
+
+export function useDeleteFromCart() {
+  const dispatch = useDispatch();
+  return React.useCallback(item => dispatch(deleteFromCart(item)), [dispatch]);
+}
+
+export function useLogin() {
+  const dispatch = useDispatch();
+  return React.useCallback(user => dispatch(login(user)), [dispatch]);
+}
+
+export function useLogout() {
+  const dispatch = useDispatch();
+  return React.useCallback(() => dispatch(logout()), [dispatch]);
 }

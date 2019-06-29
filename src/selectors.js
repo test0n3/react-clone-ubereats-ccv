@@ -1,11 +1,15 @@
 import { useSelector, shallowEqual } from "react-redux";
 
+function useUser() {
+  return useSelector(state => state.user, shallowEqual);
+}
+
 function useCartProducts() {
   return useSelector(state => Object.values(state.cart), shallowEqual);
 }
 
 function useRestaurants() {
-  return useSelector(state => state.restaurants, shallowEqual);
+  return useSelector(state => Object.values(state.restaurants), shallowEqual);
 }
 
 function useSelectedRestaurant() {
@@ -16,9 +20,19 @@ function useMenutItems() {
   return useSelector(state => Object.values(state.menuItems), shallowEqual);
 }
 
+function useGetTotal() {
+  return useSelector(state =>
+    Object.values(state.cart).reduce((acc, item) => {
+      return acc + item.quantity * item.price;
+    }, 0)
+  );
+}
+
 export {
+  useUser,
   useCartProducts,
   useRestaurants,
   useSelectedRestaurant,
-  useMenutItems
+  useMenutItems,
+  useGetTotal
 };
