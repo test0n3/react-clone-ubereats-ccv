@@ -9,6 +9,7 @@ function Restaurant({ id }) {
   const getSelectedRestaurant = useGetSelectedRestaurant();
   const restaurant = useSelectedRestaurant();
   const addItemToCart = useAddMenuItem();
+
   const linkName = {
     margin: 5,
     padding: 0,
